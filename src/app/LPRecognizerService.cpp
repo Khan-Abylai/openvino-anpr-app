@@ -16,7 +16,7 @@ LPRecognizerService::LPRecognizerService(const shared_ptr<SharedQueue<std::share
     lpQueue = make_unique<SharedQueue<shared_ptr<LicensePlate>>>();
     templateMatching = make_unique<TemplateMatching>(templates);
     backgroundThread = thread(&LPRecognizerService::checkCurrentPlatesStatus, this);
-
+    licensePlateRecognizer = make_unique<Recognizer>();
     for (const auto &camera: cameras) {
         cameraToNotValidByPatternPlatesCount.insert({camera.getCameraIp(), 0});
         cameraToNotValidByConfPlatesCount.insert({camera.getCameraIp(), 0});
@@ -110,6 +110,7 @@ void LPRecognizerService::run() {
         auto startTime = chrono::high_resolution_clock::now();
         // auto recognizerResult = lpRecognizer->predict(lpImages);
         // auto extendedRecognizerResult = lpRecognizerExtended->makePrediction(lpImages);
+        auto recognizerResult = licensePlateRecognizer->predict(lpImages);
         auto endTime = chrono::high_resolution_clock::now();
 
         auto stop = 1;

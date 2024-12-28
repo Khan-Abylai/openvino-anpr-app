@@ -1,0 +1,19 @@
+{
+  "cameras": [
+    {
+      "camera_ip": "10.66.140.21",
+      "rtsp_url": "rtsp://admin:campas123.@10.66.69.115/media/video1",
+      "result_send_endpoint": "-",
+      "node_ip": "-",
+      "snapshot_send_ip": "-",
+      "time_between_sent_plates": 5,
+      "plates_count": 10,
+      "use_mask_2": 0
+    }
+  ],
+  "time_between_snapshot_send": 1.0,
+  "rec_threshold": 0.9,
+  "det_threshold": 0.8,
+  "image_writer": 0,
+  "stat_interval": 1
+}

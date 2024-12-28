@@ -9,6 +9,7 @@
 
 #include "LPRecognizerService.h"
 #include "../package_sending/Snapshot.h"
+#include "LPDetector.h"
 
 class DetectionService : public IThreadLauncher, public ::ILogger {
 public:
@@ -37,6 +38,8 @@ private:
     std::shared_ptr<LPRecognizerService> lpRecognizerService;
     std::shared_ptr<SharedQueue<std::unique_ptr<FrameData> > > frameQueue;
     std::shared_ptr<SharedQueue<std::shared_ptr<Snapshot> > > snapshotQueue;
+
+    std::unique_ptr<Detector> licensePlateDetector;
 
     static void saveFrame(const std::shared_ptr<LicensePlate> &plate);
 

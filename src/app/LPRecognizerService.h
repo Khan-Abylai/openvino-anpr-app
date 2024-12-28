@@ -17,7 +17,7 @@
 #include "LicensePlate.h"
 #include "Constants.h"
 #include "CameraScope.h"
-
+#include "LPRecognizer.h"
 using namespace std;
 
 class LPRecognizerService : public IThreadLauncher, public ::ILogger {
@@ -45,6 +45,7 @@ private:
     std::unique_ptr<SharedQueue<std::shared_ptr<LicensePlate>>> lpQueue;
     std::unordered_map<std::string, std::unique_ptr<BaseCarTracker>> cameraIpToCarTrackerMap;
     std::unique_ptr<TemplateMatching> templateMatching;
+    std::unique_ptr<Recognizer> licensePlateRecognizer;
 
     unordered_map<string, int> cameraToNotValidByPatternPlatesCount;
     unordered_map<string, int> cameraToNotValidByConfPlatesCount;

@@ -18,7 +18,7 @@ GstreamerReader::GstreamerReader(const CameraScope &cameraScope, bool useGPUDeco
 
 void GstreamerReader::createStreamDecodingPipeline() {
     string protocol = "protocols=tcp";
-    string decode = (useGPUDecode) ? "nvh264dec ! cudadownload" : "decodebin";
+    string decode = "decodebin";
     auto streamingPipelineString = "rtspsrc " + protocol + " location=" + rtspUrl +
                                    " name=source latency=0 ! rtph264depay ! h264parse ! " + decode +
                                    " ! videoconvert ! video/x-raw, format=(string)BGR ! appsink name=sink emit-signals=true ";

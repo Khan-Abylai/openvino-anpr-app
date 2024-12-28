@@ -112,23 +112,3 @@ int main(int argc, char *argv[]) {
             threads[i].join();
     }
 }
-
-
-// int main() {
-//     cv::Mat result_image;
-//     std::shared_ptr<Recognizer> recognizer = std::make_shared<Recognizer>();
-//     std::shared_ptr<Detector> detector = std::make_shared<Detector>();
-//     const std::string image_path = "../images/test.jpeg";
-//
-//     cv::Mat myImage = cv::imread(image_path);
-//     auto start_postproc = std::chrono::high_resolution_clock::now();
-//     auto detector_result = detector->detect(myImage);
-//     auto end_postproc = std::chrono::high_resolution_clock::now();
-//     auto start_recognizer = std::chrono::high_resolution_clock::now();
-//     auto recognizer_result = recognizer->predict({detector_result});
-//     auto end_recognizer = std::chrono::high_resolution_clock::now();
-//     cout << "Recognition result: " << recognizer_result[0].first << endl;
-//     cout << "Postprocessing time: " << std::chrono::duration_cast<std::chrono::milliseconds>(end_postproc - start_postproc).count() << " ms" << endl;
-//     cout << "Recognizer time: " << std::chrono::duration_cast<std::chrono::milliseconds>(end_recognizer - start_recognizer).count() << " ms" << endl;
-//     return 0;
-// }

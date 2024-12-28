@@ -25,10 +25,10 @@ include_directories(${GST_INCLUDE_DIRS} ${GST_APP_INCLUDE_DIRS} ${GST_RTP_INCLUD
 # Create executable
 add_executable(${PROJECT_NAME} 
         src/Main.cpp
-        src/LPRecognizer.cpp
-        src/LPRecognizer.h
-        src/LPDetector.cpp
-        src/LPDetector.h
+        src/app/LPRecognizer.cpp
+        src/app/LPRecognizer.h
+        src/app/LPDetector.cpp
+        src/app/LPDetector.h
         src/Config.cpp
         src/Config.h
         src/ILogger.cpp

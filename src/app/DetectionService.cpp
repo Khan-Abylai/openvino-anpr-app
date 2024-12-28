@@ -17,6 +17,7 @@ DetectionService::DetectionService(std::shared_ptr<SharedQueue<std::unique_ptr<F
     calibParamsUpdater2->run();
     calibParams2->getMask();
 
+    licensePlateDetector = make_unique<Detector>(0.7f);
 }
 
 shared_ptr<LicensePlate> DetectionService::getMaxAreaPlate(vector<shared_ptr<LicensePlate> > &licensePlates) {
@@ -47,7 +48,8 @@ void DetectionService::run() {
     while (!shutdownFlag) {
         auto frameData = frameQueue->wait_and_pop();
         if (frameData == nullptr) continue;
-        auto frame = frameData->getFrame();
+        // auto frame = frameData->getFrame();
+        auto frame = cv::imread("../images/image.png");
         auto cameraScope = lpRecognizerService->getCameraScope(frameData->getIp());
         lastFrameRTPTimestamp = time(nullptr);
 
@@ -74,7 +76,7 @@ void DetectionService::run() {
 
 
         auto startTime = chrono::high_resolution_clock::now();
-        auto detectionResult = detection->detect(frame);
+        auto detectionResult = licensePlateDetector->detect(frame);
         auto endTime = chrono::high_resolution_clock::now();
 
         if (detectionResult.empty()) continue;
