@@ -1,0 +1,1 @@
+# openvino-anpr-app
